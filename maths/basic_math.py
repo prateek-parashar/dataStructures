@@ -43,5 +43,15 @@ def reverse_number_better(n):
     return reverse
 
 
+def factorial(n):
+    if n < 0:
+        raise ValueError("Bro, give correct value")
+    if n < 2:
+        return n
+    else:
+        return n * factorial(n - 1)
+    
 
-print(reverse_number_better(123445))
+
+
+print(factorial(-100))
