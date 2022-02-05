@@ -34,5 +34,14 @@ def reverse_number(n):
     
     return result
 
+def reverse_number_better(n):
+    reverse = 0
+    while n > 0:
+        last_digit = n % 10
+        reverse = reverse * 10 + last_digit
+        n = n // 10
+    return reverse
 
-print(is_palindrome_number(12421))
+
+
+print(reverse_number_better(123445))
