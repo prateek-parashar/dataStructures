@@ -16,3 +16,23 @@ def number_of_digits(n):
     the log of a number to base 10 + 1 floored would give the number of digits"""
 
     return math.floor(math.log(n, 10) + 1) 
+
+
+def is_palindrome_number(n):
+    reverse = reverse_number(n)
+    return reverse == n
+
+
+def reverse_number(n):
+    digits = number_of_digits(n)
+    result = 0
+    while n > 0:
+        last_digit = n % 10
+        result += last_digit * (10 ** (digits - 1))
+        digits -= 1
+        n = n // 10
+    
+    return result
+
+
+print(is_palindrome_number(12421))
