@@ -1,4 +1,5 @@
 import math
+from unittest import result
 
 def number_of_digits(n):
     """This is the first solution I came up with, but then it uses the 
@@ -145,4 +146,48 @@ def prime_factors_better(n):
         
     if n > 1:
         result.append(n)
+    return result
+
+
+def all_factors(n):
+    result = []
+    for i in range(1, n):
+        if i * i > n:
+            break
+        if n % i == 0:
+            result.append(i)
+            if n // i != i:
+                result.append(n // i)
+    return result
+
+"""Sieve of Erathosthenes"""
+"""This algorithm returns all the prime numbers less than the given number"""
+"""A naive approach would be to iterate over all the values less than n
+check if that number is prime
+And then add the number """
+
+def return_primes(n):
+    result = []
+    master_table = [1 for i in range(n)]
+
+    # Mark the first 2 values corresponding to 0 and 1 as false
+    master_table[0] = 0
+    master_table[1] = 0
+
+    # Mark all multiples of 2 as false
+    for i in range(4, n, 2):
+        master_table[i] = 0
+
+    # Mark all multiples of 3 as false
+    for i in range(6, n, 3):
+        master_table[i] = 0
+
+    # Mark all multiples of 2 as false
+    for i in range(10, n, 5):
+        master_table[i] = 0
+
+    for i in range(n):
+        if master_table[i] == 1:
+            result.append(i)
+        
     return result
