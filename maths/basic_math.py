@@ -174,20 +174,11 @@ def return_primes(n):
     master_table[0] = 0
     master_table[1] = 0
 
-    # Mark all multiples of 2 as false
-    for i in range(4, n, 2):
-        master_table[i] = 0
-
-    # Mark all multiples of 3 as false
-    for i in range(6, n, 3):
-        master_table[i] = 0
-
-    # Mark all multiples of 2 as false
-    for i in range(10, n, 5):
-        master_table[i] = 0
-
+    for i in range(2, n):
+        if master_table[i] == 1:
+            for j in range(2 * i, n, i):
+                master_table[j] = 0
     for i in range(n):
         if master_table[i] == 1:
             result.append(i)
-        
     return result
