@@ -52,6 +52,42 @@ def factorial(n):
         return n * factorial(n - 1)
     
 
+"""This is what I had in memory, it is REALLY WRONG"""
+# def gcd(a, b):
+#     while a % b != 0:
+#         b = a % b
+#     return b
 
+"""Here is the correct implementation"""
+def gcd(a, b):
+    if b == 0:
+        return a
+    else:
+        return gcd(b, a % b)
 
-print(factorial(-100))
+"""My own implementation of LCM, which is of course the Naive implementation of the LCM """
+def lcm_naive(a, b):
+    if a < b:
+        return lcm(b, a) 
+    if a % b == 0:
+        return a
+    counter = 1
+    val = b
+
+    while val % a != 0:
+        val = b * counter
+        counter += 1
+
+    return val
+
+"""The proper implementation uses the GCD!! 
+So the formula is -> GCD(a,b) * LCM(a,b) = a * b
+Also, note that GCD is same as HCF"""
+def lcm(a, b):
+    def gcd(a, b):
+        if b == 0:
+            return a
+        else:
+            return gcd(b, a % b)
+
+    return a * b // gcd(a, b)
