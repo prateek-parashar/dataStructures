@@ -91,3 +91,58 @@ def lcm(a, b):
             return gcd(b, a % b)
 
     return a * b // gcd(a, b)
+
+"""Algorithm to check if a number is prime 
+This method is thanks to the time I spent on codeWars!!
+This idea is based on the fact that each divisor of a number appear in pairs. 
+And in that pair, one number is less than square root of n, and the other is greater than 
+the square root of n
+
+One thing to keep in note is, you don't need to use the squareroot function, in the for loop
+I can iterate while i * i < n"""
+
+def is_prime(n):
+    if n == 2:
+        return True
+
+    if n == 1 or n % 2 == 0:
+        return False
+    
+    import math
+    root_of_n = math.floor(math.sqrt(n))
+    for i in range(2, root_of_n + 1):
+        if n % i == 0:
+            return False
+    
+    return True
+
+"""This was the implementatation I came up with but fml, I don't need to check if the number is prime or not!"""
+def prime_factors(n):
+    result = []
+    for i in range(n):
+        if i * i > n:
+            break
+
+        if is_prime(i):
+            check = n
+            while check % i == 0:
+                result.append(i)
+                check = check // i
+    return result
+
+def prime_factors_better(n):
+    result = []
+    if n <= 1:
+        return
+
+    for i in range(2, n):
+        if i * i > n:
+            break
+        
+        while n % i == 0:
+            result.append(i)
+            n = n // i
+        
+    if n > 1:
+        result.append(n)
+    return result
