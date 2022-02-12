@@ -182,3 +182,17 @@ def return_primes(n):
         if master_table[i] == 1:
             result.append(i)
     return result
+
+
+"""This solution is really intelligent (tricky) """
+"""The naive solution, of course is to multiply continously"""
+def power(x, n):
+    if n == 0:
+        return 1
+    temp = power(x, n // 2)
+    temp = temp * temp
+
+    if n % 2 == 0:
+        return temp
+    else:
+        return temp * x
